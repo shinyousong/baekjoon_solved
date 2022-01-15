@@ -1,0 +1,31 @@
+#include <iostream>
+using namespace std;
+
+void nonself(int n);
+int masking[10001] = {0, }; //0 for conv
+
+
+int main()
+{
+    int cnt = 1;
+    while(cnt <= 10000){
+        if(masking[cnt] == 0){
+            nonself(cnt);
+            cout << cnt << endl;
+        }
+        cnt++;
+        
+    }
+}
+
+void nonself(int n){
+    if(n > 10000) return;
+    int dn = n;
+    while(n >= 10){
+        dn += n%10;
+        n /= 10;
+    }
+    dn += n;
+    if(dn <= 10000) masking[dn] = 1; //masking
+    nonself(dn); //recur
+}
