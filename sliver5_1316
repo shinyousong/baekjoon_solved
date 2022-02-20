@@ -1,0 +1,24 @@
+#include <iostream>
+#include <set>
+using namespace std;
+
+int main(){
+	int iter;
+	cin >> iter;
+
+	
+	set<char> s;
+	int cnt = 0; //cout
+	for (int i = 0; i < iter; i++){
+		char line[100] = { 0, };
+		cin >> line;
+		for (int j = 0; j < sizeof(line)/sizeof('a'); j++){
+			if (s.count(line[j]) != 0) break; //not group
+			while (line[j] == line[j + 1]) j++;
+			if (line[j] == 0){ cnt++; break; } //endl, group
+			s.insert(line[j]);
+		}
+		s.clear(); //need erase
+	}
+	cout << cnt << endl;
+}
